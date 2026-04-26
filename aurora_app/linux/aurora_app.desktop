@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=Application
+Name=openScale
+Comment=Weight and body metrics tracker
+Exec=aurora_app
+Icon=openscale
+Categories=Medical;Utility;
+Permissions=Bluetooth;Internet

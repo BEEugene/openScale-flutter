@@ -1,0 +1,384 @@
+{
+  "@@locale": "en",
+
+  "appTitle": "openScale",
+  "@appTitle": { "description": "Application title" },
+
+  "overview": "Overview",
+  "@overview": { "description": "Navigation tab label for overview screen" },
+
+  "graph": "Graph",
+  "@graph": { "description": "Navigation tab label for graph screen" },
+
+  "table": "Table",
+  "@table": { "description": "Navigation tab label for table screen" },
+
+  "statistics": "Statistics",
+  "@statistics": { "description": "Navigation tab label for statistics screen" },
+
+  "insights": "Insights",
+  "@insights": { "description": "Navigation tab label for insights screen" },
+
+  "addMeasurement": "Add measurement",
+  "@addMeasurement": { "description": "Button/tooltip to add a new measurement" },
+
+  "noMeasurementsYet": "No measurements yet",
+  "@noMeasurementsYet": { "description": "Empty state message on overview screen" },
+
+  "settings": "Settings",
+  "@settings": { "description": "Settings screen title" },
+
+  "profile": "Profile",
+  "@profile": { "description": "Settings section header" },
+
+  "users": "Users",
+  "@users": { "description": "Users management screen title and settings item" },
+
+  "manageUsersAndProfiles": "Manage users and profiles",
+  "@manageUsersAndProfiles": { "description": "Subtitle for users settings item" },
+
+  "connectivity": "Connectivity",
+  "@connectivity": { "description": "Settings section header" },
+
+  "bluetooth": "Bluetooth",
+  "@bluetooth": { "description": "Bluetooth screen title and settings item" },
+
+  "connectBleScale": "Connect BLE scale",
+  "@connectBleScale": { "description": "Subtitle for bluetooth settings item" },
+
+  "data": "Data",
+  "@data": { "description": "Settings section header" },
+
+  "dataManagement": "Data management",
+  "@dataManagement": { "description": "Data management screen title and settings item" },
+
+  "importExportBackup": "Import, export, backup",
+  "@importExportBackup": { "description": "Subtitle for data management settings item" },
+
+  "appearance": "Appearance",
+  "@appearance": { "description": "Settings section header" },
+
+  "theme": "Theme",
+  "@theme": { "description": "Theme settings item" },
+
+  "lightDarkSystem": "Light, dark, system",
+  "@lightDarkSystem": { "description": "Subtitle for theme settings item" },
+
+  "units": "Units",
+  "@units": { "description": "Units settings item" },
+
+  "weightHeight": "Weight, height",
+  "@weightHeight": { "description": "Subtitle for units settings item" },
+
+  "about": "About",
+  "@about": { "description": "Settings section header" },
+
+  "aboutOpenScale": "About openScale",
+  "@aboutOpenScale": { "description": "About settings item title" },
+
+  "version": "Version {version}",
+  "@version": {
+    "description": "Version display",
+    "placeholders": {
+      "version": { "type": "String" }
+    }
+  },
+
+  "license": "License",
+  "@license": { "description": "License settings item title" },
+
+  "gplV3": "GPL v3",
+  "@gplV3": { "description": "License name" },
+
+  "noDataForSelectedPeriod": "No data for selected period",
+  "@noDataForSelectedPeriod": { "description": "Empty chart state" },
+
+  "noMeasurements": "No measurements",
+  "@noMeasurements": { "description": "Empty table state" },
+
+  "date": "Date",
+  "@date": { "description": "Table column header" },
+
+  "weight": "Weight",
+  "@weight": { "description": "Weight label" },
+
+  "bmi": "BMI",
+  "@bmi": { "description": "Body Mass Index label" },
+
+  "fatPercent": "Fat %",
+  "@fatPercent": { "description": "Body fat percentage column header" },
+
+  "waterPercent": "Water %",
+  "@waterPercent": { "description": "Body water percentage column header" },
+
+  "musclePercent": "Muscle %",
+  "@musclePercent": { "description": "Muscle percentage column header" },
+
+  "week": "Week",
+  "@week": { "description": "Statistics period selector" },
+
+  "month": "Month",
+  "@month": { "description": "Statistics period selector" },
+
+  "year": "Year",
+  "@year": { "description": "Statistics period selector" },
+
+  "minimum": "Minimum",
+  "@minimum": { "description": "Statistics card label" },
+
+  "maximum": "Maximum",
+  "@maximum": { "description": "Statistics card label" },
+
+  "last": "Last",
+  "@last": { "description": "Statistics card label for last value" },
+
+  "change": "Change",
+  "@change": { "description": "Statistics card label for change value" },
+
+  "count": "Count",
+  "@count": { "description": "Statistics card label for measurement count" },
+
+  "noDataYet": "No data yet",
+  "@noDataYet": { "description": "Empty insights state" },
+
+  "monthlyChange": "Monthly change",
+  "@monthlyChange": { "description": "Insights card title" },
+
+  "currentStreak": "Current streak",
+  "@currentStreak": { "description": "Insights card title" },
+
+  "mostActiveDay": "Most active day",
+  "@mostActiveDay": { "description": "Insights card title" },
+
+  "goalProgress": "Goal progress",
+  "@goalProgress": { "description": "Insights card title" },
+
+  "avgWeeklyWeighIns": "Average weekly weigh-ins",
+  "@avgWeeklyWeighIns": { "description": "Insights card title" },
+
+  "lastMeasurement": "Last measurement",
+  "@lastMeasurement": { "description": "Insights card title" },
+
+  "monday": "Monday",
+  "tuesday": "Tuesday",
+  "wednesday": "Wednesday",
+  "thursday": "Thursday",
+  "friday": "Friday",
+  "saturday": "Saturday",
+  "sunday": "Sunday",
+
+  "days": "days",
+  "@days": { "description": "Unit for streak days" },
+
+  "perWeek": "per week",
+  "@perWeek": { "description": "Unit for average weekly count" },
+
+  "kgThisMonth": "{value} kg this month",
+  "@kgThisMonth": {
+    "description": "Monthly weight change display",
+    "placeholders": {
+      "value": { "type": "String" }
+    }
+  },
+
+  "setGoalInUserSettings": "Set a goal in user settings",
+  "@setGoalInUserSettings": { "description": "Goal progress placeholder" },
+
+  "streakDays": "{count} days",
+  "@streakDays": {
+    "description": "Streak display with day count",
+    "placeholders": {
+      "count": { "type": "int" }
+    }
+  },
+
+  "avgWeeklyCount": "{count} per week",
+  "@avgWeeklyCount": {
+    "description": "Average weekly count display",
+    "placeholders": {
+      "count": { "type": "String" }
+    }
+  },
+
+  "measurement": "Measurement",
+  "@measurement": { "description": "Measurement detail screen title" },
+
+  "measurementNotFound": "Measurement not found",
+  "@measurementNotFound": { "description": "Error when measurement ID is invalid" },
+
+  "dateTime": "Date & Time",
+  "@dateTime": { "description": "Label for date and time field" },
+
+  "deleteMeasurement": "Delete measurement",
+  "@deleteMeasurement": { "description": "Confirm dialog title for deleting measurement" },
+
+  "actionCannotBeUndone": "This action cannot be undone.",
+  "@actionCannotBeUndone": { "description": "Warning about irreversible action" },
+
+  "save": "Save",
+  "@save": { "description": "Save button label" },
+
+  "comment": "Comment",
+  "@comment": { "description": "Comment field label" },
+
+  "saveMeasurement": "Save measurement",
+  "@saveMeasurement": { "description": "Save measurement button label" },
+
+  "enterValidWeight": "Enter a valid weight",
+  "@enterValidWeight": { "description": "Validation error for weight input" },
+
+  "edit": "Edit",
+  "@edit": { "description": "Edit action label" },
+
+  "delete": "Delete",
+  "@delete": { "description": "Delete action label" },
+
+  "deleteUser": "Delete user",
+  "@deleteUser": { "description": "Confirm dialog title for deleting user" },
+
+  "deleteUserNameData": "Delete \"{name}\" and all their data?",
+  "@deleteUserNameData": {
+    "description": "Confirm dialog message for deleting user",
+    "placeholders": {
+      "name": { "type": "String" }
+    }
+  },
+
+  "editUser": "Edit user",
+  "@editUser": { "description": "Dialog title for editing user" },
+
+  "addUser": "Add user",
+  "@addUser": { "description": "Dialog title for adding user" },
+
+  "name": "Name",
+  "@name": { "description": "Name field label" },
+
+  "heightCm": "Height (cm)",
+  "@heightCm": { "description": "Height input field label" },
+
+  "goalWeightKg": "Goal weight (kg)",
+  "@goalWeightKg": { "description": "Goal weight input field label" },
+
+  "birthday": "Birthday",
+  "@birthday": { "description": "Birthday field label" },
+
+  "cancel": "Cancel",
+  "@cancel": { "description": "Cancel button label" },
+
+  "scanning": "Scanning...",
+  "@scanning": { "description": "Bluetooth scanning in progress" },
+
+  "scan": "Scan",
+  "@scan": { "description": "Bluetooth scan button" },
+
+  "disconnect": "Disconnect",
+  "@disconnect": { "description": "Bluetooth disconnect button" },
+
+  "noDeviceConnected": "No device connected",
+  "@noDeviceConnected": { "description": "Bluetooth status when no device" },
+
+  "scanNearbyBle": "Scan for nearby BLE scales",
+  "@scanNearbyBle": { "description": "Bluetooth status subtitle" },
+
+  "searchingForDevices": "Searching for devices...",
+  "@searchingForDevices": { "description": "Bluetooth search status" },
+
+  "noDevicesFound": "No devices found",
+  "@noDevicesFound": { "description": "Bluetooth empty state" },
+
+  "unknown": "Unknown",
+  "@unknown": { "description": "Unknown device name" },
+
+  "connect": "Connect",
+  "@connect": { "description": "Bluetooth connect button" },
+
+  "export": "Export",
+  "@export": { "description": "Export section header" },
+
+  "exportCsv": "Export CSV",
+  "@exportCsv": { "description": "Export CSV menu item" },
+
+  "exportMeasurementsCsv": "Export measurements to CSV file",
+  "@exportMeasurementsCsv": { "description": "Export CSV subtitle" },
+
+  "importCsv": "Import CSV",
+  "@importCsv": { "description": "Import CSV menu item" },
+
+  "importMeasurementsCsv": "Import measurements from CSV file",
+  "@importMeasurementsCsv": { "description": "Import CSV subtitle" },
+
+  "backup": "Backup",
+  "@backup": { "description": "Backup section header" },
+
+  "backupDatabase": "Backup database",
+  "@backupDatabase": { "description": "Backup database menu item" },
+
+  "saveDatabaseCopy": "Save a copy of the database",
+  "@saveDatabaseCopy": { "description": "Backup database subtitle" },
+
+  "restoreDatabase": "Restore database",
+  "@restoreDatabase": { "description": "Restore database menu item" },
+
+  "restoreFromBackup": "Restore from a backup file",
+  "@restoreFromBackup": { "description": "Restore database subtitle" },
+
+  "dangerZone": "Danger zone",
+  "@dangerZone": { "description": "Danger zone section header" },
+
+  "clearAllData": "Clear all data",
+  "@clearAllData": { "description": "Clear data button" },
+
+  "deleteAllMeasurementsAllUsers": "Delete all measurements for all users",
+  "@deleteAllMeasurementsAllUsers": { "description": "Clear data subtitle" },
+
+  "clearDataWarning": "This will permanently delete all measurements for all users. This cannot be undone.",
+  "@clearDataWarning": { "description": "Confirmation message for clearing all data" },
+
+  "allDataCleared": "All data cleared",
+  "@allDataCleared": { "description": "Snackbar after data cleared" },
+
+  "csvExportInitiated": "CSV export initiated",
+  "@csvExportInitiated": { "description": "Snackbar after export" },
+
+  "csvImportInitiated": "CSV import initiated",
+  "@csvImportInitiated": { "description": "Snackbar after import" },
+
+  "backupInitiated": "Backup initiated",
+  "@backupInitiated": { "description": "Snackbar after backup" },
+
+  "restoreInitiated": "Restore initiated",
+  "@restoreInitiated": { "description": "Snackbar after restore" },
+
+  "confirm": "Confirm",
+  "@confirm": { "description": "Confirm button label" },
+
+  "ok": "OK",
+  "@ok": { "description": "OK button label" },
+
+  "all": "All",
+  "@all": { "description": "Date range selector - all time" },
+
+  "fat": "Fat",
+  "@fat": { "description": "Fat measurement type" },
+
+  "water": "Water",
+  "@water": { "description": "Water measurement type" },
+
+  "muscle": "Muscle",
+  "@muscle": { "description": "Muscle measurement type" },
+
+  "lbm": "LBM",
+  "@lbm": { "description": "Lean Body Mass measurement type" },
+
+  "bone": "Bone",
+  "@bone": { "description": "Bone measurement type" },
+
+  "waist": "Waist",
+  "@waist": { "description": "Waist measurement type" },
+
+  "visceral": "Visceral",
+  "@visceral": { "description": "Visceral fat measurement type" },
+
+  "kg": "kg",
+  "@kg": { "description": "Kilogram unit abbreviation" }
+}

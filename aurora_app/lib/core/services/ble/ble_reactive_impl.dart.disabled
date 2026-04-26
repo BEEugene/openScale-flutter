@@ -1,0 +1,197 @@
+import 'dart:async';
+
+import 'package:flutter_reactive_ble/flutter_reactive_ble.dart';
+import 'package:openscale/core/services/ble/ble_interface.dart';
+
+class BleReactiveImpl implements BleService {
+  final FlutterReactiveBle _ble = FlutterReactiveBle();
+
+  final StreamController<BleDevice> _scanController =
+      StreamController<BleDevice>.broadcast();
+  final StreamController<bool> _connectionController =
+      StreamController<bool>.broadcast();
+
+  StreamSubscription<DiscoveredDevice>? _scanSubscription;
+  StreamSubscription<ConnectionStateUpdate>? _connectionSubscription;
+
+  final Map<String, DiscoveredDevice> _discoveredDevices = {};
+
+  BleDevice _mapDiscoveredDevice(DiscoveredDevice device) {
+    return BleDevice(id: device.id, name: device.name, rssi: device.rssi);
+  }
+
+  QualifiedCharacteristic _qualifiedCharacteristic(
+    String serviceUuid,
+    String characteristicUuid,
+    String deviceId,
+  ) {
+    return QualifiedCharacteristic(
+      serviceId: Uuid.parse(serviceUuid),
+      characteristicId: Uuid.parse(characteristicUuid),
+      deviceId: deviceId,
+    );
+  }
+
+  String? _connectedDeviceId;
+
+  @override
+  Future<void> startScan(Duration timeout) async {
+    _discoveredDevices.clear();
+
+    _scanSubscription?.cancel();
+    _scanSubscription = _ble
+        .scanForDevices(withServices: [])
+        .timeout(timeout)
+        .listen(
+          (device) {
+            _discoveredDevices[device.id] = device;
+            if (!_scanController.isClosed) {
+              _scanController.add(_mapDiscoveredDevice(device));
+            }
+          },
+          onError: (error) {
+            if (!_scanController.isClosed) {
+              _scanController.addError(error);
+            }
+          },
+          onDone: () {
+            // Scan completed (timeout reached).
+          },
+        );
+
+    // Wait for the scan stream to finish (driven by timeout).
+    await _scanSubscription?.asFuture<void>(null);
+  }
+
+  @override
+  Future<void> stopScan() async {
+    await _scanSubscription?.cancel();
+    _scanSubscription = null;
+  }
+
+  @override
+  Future<void> connect(String deviceId) async {
+    _connectionSubscription?.cancel();
+    _connectedDeviceId = deviceId;
+
+    _connectionSubscription = _ble
+        .connectToDevice(id: deviceId)
+        .listen(
+          (update) {
+            final connected =
+                update.connectionState == DeviceConnectionState.connected;
+            if (!_connectionController.isClosed) {
+              _connectionController.add(connected);
+            }
+
+            if (update.connectionState == DeviceConnectionState.disconnected) {
+              _connectedDeviceId = null;
+            }
+          },
+          onError: (error) {
+            if (!_connectionController.isClosed) {
+              _connectionController.add(false);
+            }
+          },
+        );
+  }
+
+  @override
+  Future<void> disconnect() async {
+    await _connectionSubscription?.cancel();
+    _connectionSubscription = null;
+    _connectedDeviceId = null;
+
+    if (!_connectionController.isClosed) {
+      _connectionController.add(false);
+    }
+  }
+
+  @override
+  Future<List<int>> readCharacteristic(
+    String serviceUuid,
+    String characteristicUuid,
+  ) async {
+    if (_connectedDeviceId == null) {
+      throw StateError('Not connected to any device');
+    }
+
+    final characteristic = _qualifiedCharacteristic(
+      serviceUuid,
+      characteristicUuid,
+      _connectedDeviceId!,
+    );
+
+    final result = await _ble.readCharacteristic(characteristic);
+    return result;
+  }
+
+  @override
+  Future<void> writeCharacteristic(
+    String serviceUuid,
+    String characteristicUuid,
+    List<int> data,
+  ) async {
+    if (_connectedDeviceId == null) {
+      throw StateError('Not connected to any device');
+    }
+
+    final characteristic = _qualifiedCharacteristic(
+      serviceUuid,
+      characteristicUuid,
+      _connectedDeviceId!,
+    );
+
+    await _ble.writeCharacteristicWithResponse(characteristic, value: data);
+  }
+
+  @override
+  Stream<List<int>> setNotification(
+    String serviceUuid,
+    String characteristicUuid,
+  ) {
+    if (_connectedDeviceId == null) {
+      throw StateError('Not connected to any device');
+    }
+
+    final characteristic = _qualifiedCharacteristic(
+      serviceUuid,
+      characteristicUuid,
+      _connectedDeviceId!,
+    );
+
+    return _ble.subscribeToCharacteristic(characteristic);
+  }
+
+  @override
+  BleAdvertisementData getAdvertisementData(String deviceId) {
+    final device = _discoveredDevices[deviceId];
+
+    if (device == null) {
+      return const BleAdvertisementData(
+        name: 'Unknown',
+        rssi: 0,
+        serviceUuids: [],
+      );
+    }
+
+    return BleAdvertisementData(
+      name: device.name,
+      rssi: device.rssi,
+      serviceUuids: device.serviceUuids.map((uuid) => uuid.toString()).toList(),
+    );
+  }
+
+  @override
+  Stream<BleDevice> get scannedDevices => _scanController.stream;
+
+  @override
+  Stream<bool> get isConnected => _connectionController.stream;
+
+  void dispose() {
+    _scanSubscription?.cancel();
+    _connectionSubscription?.cancel();
+    _scanController.close();
+    _connectionController.close();
+  }
+}
