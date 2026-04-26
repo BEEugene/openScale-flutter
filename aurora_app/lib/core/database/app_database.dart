@@ -1,4 +1,8 @@
+import 'dart:io' show Platform;
+
+import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:sqflite/sqflite.dart';
+import 'package:sqflite_common_ffi/sqflite_ffi.dart';
 import 'package:path/path.dart' as p;
 
 class AppDatabase {
@@ -13,6 +17,14 @@ class AppDatabase {
       throw StateError('Database not initialized. Call initialize() first.');
     }
     return db;
+  }
+
+  static void initSqflite() {
+    if (kIsWeb) return;
+    if (Platform.isWindows || Platform.isLinux || Platform.isMacOS) {
+      sqfliteFfiInit();
+      databaseFactory = databaseFactoryFfi;
+    }
   }
 
   Future<void> initialize() async {

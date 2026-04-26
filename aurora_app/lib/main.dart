@@ -24,6 +24,7 @@ final getIt = GetIt.instance;
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  AppDatabase.initSqflite();
   await _setupDependencies();
   runApp(const OpenScaleApp());
 }
@@ -56,7 +57,7 @@ Future<void> _setupDependencies() async {
     () => UserBloc(getIt<UserRepositoryImpl>()),
   );
   getIt.registerLazySingleton<SettingsBloc>(() => SettingsBloc());
-  getIt.registerFactory<MeasurementBloc>(
+  getIt.registerLazySingleton<MeasurementBloc>(
     () => MeasurementBloc(getIt<MeasurementRepositoryImpl>()),
   );
 }
@@ -71,6 +72,7 @@ class OpenScaleApp extends StatelessWidget {
         BlocProvider.value(value: getIt<UserBloc>()),
         BlocProvider.value(value: getIt<SettingsBloc>()),
         BlocProvider.value(value: getIt<BluetoothBloc>()),
+        BlocProvider.value(value: getIt<MeasurementBloc>()),
       ],
       child: BlocBuilder<SettingsBloc, SettingsState>(
         builder: (context, settings) {
